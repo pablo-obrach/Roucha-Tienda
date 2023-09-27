@@ -1,0 +1,19 @@
+.texts {
+  transition: 500ms;
+  animation: slideInLeft 15s infinite ease-in-out;
+
+  transform: translateX(0px);
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-25%);
+  }
+  30%,
+  40% {
+    transform: translateX(37%);
+  }
+  100% {
+    transform: translateX(110%);
+  }
+}

@@ -1,0 +1,14 @@
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--grey-texts);
+  border-bottom: 1px solid var(--grey-texts);
+}
+
+.footerBottomText {
+  font-weight: 200;
+  font-size: 1rem;
+  text-align: center;
+}

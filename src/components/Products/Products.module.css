@@ -1,0 +1,28 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  gap: 0.5rem;
+  padding: 1rem;
+
+  .productImage {
+    width: 10rem;
+  }
+
+  .productName,
+  .productDescription,
+  .productPrice {
+    margin: 0;
+  }
+
+  .productName {
+    font-size: 1rem;
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+
+  .productPrice {
+    font-weight: 200;
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,16 @@
+.BtnComprar {
+  border: none;
+  outline: none;
+  background-color: var(--black-titles);
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 200;
+  width: 100%;
+  cursor: pointer;
+  transition: all 500ms;
+
+  &:hover {
+    background-color: var(--hover-buttons);
+  }
+}

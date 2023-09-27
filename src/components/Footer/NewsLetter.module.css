@@ -1,0 +1,37 @@
+.NewsLetterContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.NewsLetterTitle {
+  font-weight: 200;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.NewsLetterEmail {
+  border: none;
+  border-bottom: 1px solid var(--black-titles);
+  width: 18rem;
+  padding-bottom: 0.2rem;
+
+  &::placeholder {
+    text-align: center;
+    font-size: 0.7rem;
+  }
+}
+
+.NewsLetterButtonEnviar {
+  border: none;
+  background-color: var(--black-titles);
+  color: var(--white);
+  padding: 0.3rem 1rem;
+  font-size: 0.5rem;
+  margin-left: 0.5rem;
+  transition: all 500ms;
+
+  &:hover {
+    background-color: var(--hover-buttons);
+  }
+}

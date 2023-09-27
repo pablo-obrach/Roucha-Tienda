@@ -1,0 +1,27 @@
+@import './normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;800&display=swap');
+
+:root {
+  /**Font Tiles*/
+  --black-titles: rgb(0, 0, 0);
+  --grey-texts: rgb(161, 150, 144);
+  --white: rgb(255, 255, 255);
+
+  /**Web Page Colors*/
+  --blue: rgb(0, 97, 169);
+  --light-blue: rgb(172, 206, 222);
+  --grey: rgb(207, 207, 207);
+  --pink: rgb(238, 165, 168);
+  --olive: rgb(103, 108, 40);
+  --cream: rgb(232, 223, 196);
+  --brown: rgb(94, 46, 29);
+  --caramel-sunglasses: rgb(168, 98, 0);
+
+  /*Hover colors:*/
+  --hover-buttons: rgb(128, 128, 128);
+  --hover-qr: rgb(18, 172, 228);
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
