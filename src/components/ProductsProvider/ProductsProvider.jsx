@@ -3,13 +3,10 @@ import React, {useState, useContext, useEffect} from 'react'
 
 const productsContext = React.createContext()
 
-export function useProductsContext() {
-  return useContext(productsContext)
-}
-
 export function ProductsProvider({children}) {
   const [products, setProducts] = useState(null)
   const [cart, setCart] = useState([])
+  console.log(cart)
 
   useEffect(() => {
     fetch('/data.json')
@@ -22,4 +19,8 @@ export function ProductsProvider({children}) {
       {children}
     </productsContext.Provider>
   )
+}
+
+export function useProductsContext() {
+  return useContext(productsContext)
 }

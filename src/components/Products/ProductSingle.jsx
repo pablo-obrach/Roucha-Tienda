@@ -7,6 +7,8 @@ const ProductSingle = () => {
   const {productId} = useParams()
   const {products, cart, setCart} = useProductsContext()
 
+  console.log(cart)
+
   const handleBuy = product => {
     setCart([...cart, product])
   }
