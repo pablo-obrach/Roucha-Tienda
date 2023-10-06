@@ -52,6 +52,8 @@ export function ProductsProvider({children}) {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
+  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
+
   return (
     <productsContext.Provider
       value={{
@@ -60,7 +62,8 @@ export function ProductsProvider({children}) {
         setCart,
         handleBuy,
         decreaseProduct,
-        removeProduct
+        removeProduct,
+        total
       }}
     >
       {children}
