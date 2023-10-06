@@ -5,6 +5,9 @@ import Hombre from './components/Sections/Hombre'
 import Mujer from './components/sections/Mujer'
 import ProductShowCase from './components/Products/ProductShowCase'
 import {ProductsProvider} from './components/ProductsProvider/ProductsProvider'
+import Lino from './components/Sections/Lino'
+import Algodon from './components/Sections/Algodon'
+import Accesorios from './components/Sections/Accesorios'
 
 const App = () => {
   return (
@@ -19,6 +22,9 @@ const App = () => {
             path='/prodShowCase/:productId'
             element={<ProductShowCase />}
           />
+          <Route path='/lino' element={<Lino />} />
+          <Route path='/algodon' element={<Algodon />} />
+          <Route path='/accesorios' element={<Accesorios />} />
         </Routes>
       </ProductsProvider>
     </BrowserRouter>
@@ -26,5 +32,3 @@ const App = () => {
 }
 
 export default App
-
-//TODO OBTENER EL ID DEL PRODUCTO Y PASARLO COMO PARAMETRO ✅

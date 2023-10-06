@@ -1,0 +1,59 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.videoContainer {
+  margin-top: 3rem;
+  width: 90%;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.textContainer > h2 {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.textContainer > p {
+  font-size: 0.8rem;
+}
+
+.linksListContainer {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.linksListContainer > li {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.cardsContainer {
+  display: flex;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.cardMain > img {
+  width: 50%;
+}
+
+.cardMain > h4 {
+  font-weight: 400;
+}
+
+.cardLink {
+  text-decoration: none;
+}

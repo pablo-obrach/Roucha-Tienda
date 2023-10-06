@@ -1,7 +1,7 @@
 import styles from './ItemListContainer.module.css'
 import {useProductsContext} from '../ProductsProvider/ProductsProvider'
 import {Link} from 'react-router-dom'
-
+import {CircularProgress} from '@mui/material'
 import Products from '../Products/Products'
 
 const ItemHombreContainer = () => {
@@ -10,7 +10,7 @@ const ItemHombreContainer = () => {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.ItemListContainer}>
-        {products &&
+        {products != null ? (
           products
             .filter(prod => prod.gender === 'hombre')
             .map(product => (
@@ -22,7 +22,10 @@ const ItemHombreContainer = () => {
                 {' '}
                 <Products key={product.id} item={product} />{' '}
               </Link>
-            ))}
+            ))
+        ) : (
+          <CircularProgress />
+        )}
       </div>
     </div>
   )

@@ -1,5 +1,14 @@
+import {useProductsContext} from '../ProductsProvider/ProductsProvider'
 const CartTotal = () => {
-  return <div>CartTotal</div>
+  const {cart} = useProductsContext()
+
+  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
+
+  return (
+    <div>
+      <h3>Cart Total: ${total}</h3>
+    </div>
+  )
 }
 
 export default CartTotal

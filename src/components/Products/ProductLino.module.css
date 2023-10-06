@@ -1,0 +1,15 @@
+.mainContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--black-titles);
+}
