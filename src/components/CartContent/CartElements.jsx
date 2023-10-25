@@ -23,11 +23,11 @@ const CartElements = () => {
           <div className={styles.productCard} key={product.id}>
             <img
               className={styles.productImage}
-              src={product.image1}
-              alt={product.name}
+              src={product.imagen}
+              alt={product.nombre}
             />
-            <h3 className={styles.productText}>{product.name}</h3>
-            <h3 className={styles.productText}>${product.price}</h3>
+            <h3 className={styles.productText}>{product.nombre}</h3>
+            <h3 className={styles.productText}>${product.precio}</h3>
             <div className={styles.quantityContainer}>
               <button
                 className={styles.productButtonQuantity}
@@ -35,7 +35,7 @@ const CartElements = () => {
               >
                 <img src={removeIcon} alt='Remove Icon' />
               </button>
-              <h3 className={styles.productText}>{product.quantity}</h3>
+              <h3 className={styles.productText}>{product.cantidad}</h3>
               <button
                 className={styles.productButtonQuantity}
                 onClick={() => handleBuy(product)}
@@ -44,7 +44,7 @@ const CartElements = () => {
               </button>
             </div>
             <h4 className={styles.productText}>
-              ${product.price * product.quantity}
+              ${product.precio * product.cantidad}
             </h4>
             <button
               onClick={() => removeProduct(product)}

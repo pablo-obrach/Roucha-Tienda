@@ -4,16 +4,9 @@ import React, {useState, useContext, useEffect} from 'react'
 const productsContext = React.createContext()
 
 export function ProductsProvider({children}) {
-  const [products, setProducts] = useState(null)
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem('cart')) || []
   )
-
-  useEffect(() => {
-    fetch('/data.json')
-      .then(res => res.json())
-      .then(data => setProducts(data))
-  }, [])
 
   const handleBuy = product => {
     const productRepeat = cart.find(prod => prod.id === product.id)
@@ -22,7 +15,7 @@ export function ProductsProvider({children}) {
       setCart(
         cart.map(prod =>
           prod.id === product.id
-            ? {...product, quantity: productRepeat.quantity + 1}
+            ? {...product, cantidad: productRepeat.cantidad + 1}
             : prod
         )
       )
@@ -34,11 +27,11 @@ export function ProductsProvider({children}) {
   const decreaseProduct = product => {
     const productRepeat = cart.find(prod => prod.id === product.id)
 
-    productRepeat.quantity !== 1 &&
+    productRepeat.cantidad !== 1 &&
       setCart(
         cart.map(prod =>
           prod.id === product.id
-            ? {...product, quantity: productRepeat.quantity - 1}
+            ? {...product, cantidad: productRepeat.cantidad - 1}
             : prod
         )
       )
@@ -52,12 +45,11 @@ export function ProductsProvider({children}) {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
+  const total = cart.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
 
   return (
     <productsContext.Provider
       value={{
-        products,
         cart,
         setCart,
         handleBuy,

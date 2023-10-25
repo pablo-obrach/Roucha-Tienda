@@ -1,9 +1,9 @@
 import videoMainHombre from '../../assets/videos/videoMainHombre.mp4'
 import {Link} from 'react-router-dom'
 import styles from './Main.module.css'
-import linoImage from '../../assets/img/secciones/hombre/1-lino/2-b.png'
-import algodonImage from '../../assets/img/secciones/hombre/2-algodon/2-a.png'
-import accesoriosImage from '../../assets/img/secciones/hombre/4-accesorios/2-b.png'
+import linoImage from '../../assets/img/secciones/hombre/Lino.png'
+import algodonImage from '../../assets/img/secciones/hombre/algodon.png'
+import accesoriosImage from '../../assets/img/secciones/hombre/accesorios.png'
 
 const Main = () => {
   return (

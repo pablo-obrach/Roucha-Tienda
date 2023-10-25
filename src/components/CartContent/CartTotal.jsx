@@ -2,7 +2,7 @@ import {useProductsContext} from '../ProductsProvider/ProductsProvider'
 const CartTotal = () => {
   const {cart} = useProductsContext()
 
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
+  const total = cart.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
 
   return (
     <div>
