@@ -3,68 +3,165 @@ import styles from './CartElements.module.css'
 import closeIcon from '../../assets/icons/EpCloseBold.svg'
 import addIcon from '../../assets/icons/MiAdd.svg'
 import removeIcon from '../../assets/icons/MiRemove.svg'
-import BtnComprar from '../Buttons/BtnComprar'
+import BtnSubmit from '../Buttons/BtnSubmit'
+import {ToastContainer, toast} from 'react-toastify'
 const CartElements = () => {
-  const {cart, handleBuy, decreaseProduct, removeProduct, total} =
-    useProductsContext()
+  const {
+    cart,
+    handleBuy,
+    decreaseProduct,
+    removeProduct,
+    total,
+    sendOrder,
+    setCart
+  } = useProductsContext()
 
+  const notify = () => {
+    toast.success('Su orden ya fue creada', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      progress: undefined
+    })
+  }
+
+  const handleFormChange = e => {
+    e.preventDefault()
+
+    setCart({
+      ...cart,
+      buyer: {
+        ...cart.buyer,
+        nombre: e.target.nombre.value,
+        apellido: e.target.apellido.value,
+        telefono: e.target.telefono.value,
+        email: e.target.email.value
+      }
+    })
+    sendOrder()
+    notify()
+  }
   return (
-    <div className={styles.mainContainerCart}>
+    <div key={cart.items.id} className={styles.mainContainerCart}>
       <div className={styles.titleContainer}>
         <h2>MI CARRITO</h2>
       </div>
 
-      <div className={styles.SubTotalContainer}>
-        <p>SUBTOTAL</p>
-      </div>
-
-      {cart.length !== 0 ? (
-        cart.map(product => (
-          <div className={styles.productCard} key={product.id}>
-            <img
-              className={styles.productImage}
-              src={product.imagen}
-              alt={product.nombre}
-            />
-            <h3 className={styles.productText}>{product.nombre}</h3>
-            <h3 className={styles.productText}>${product.precio}</h3>
-            <div className={styles.quantityContainer}>
+      {cart.items.length !== 0 ? (
+        cart.items.map(product => (
+          <>
+            <div className={styles.productCard} key={product.id}>
+              <img
+                className={styles.productImage}
+                src={product.imagen}
+                alt={product.nombre}
+              />
+              <h3 className={styles.productText}>{product.nombre}</h3>
+              <h3 className={styles.productText}>${product.precio}</h3>
+              <div className={styles.quantityContainer}>
+                <button
+                  className={styles.productButtonQuantity}
+                  onClick={() => decreaseProduct(product)}
+                >
+                  <img src={removeIcon} alt='Remove Icon' />
+                </button>
+                <h3 className={styles.productText}>{product.cantidad}</h3>
+                <button
+                  className={styles.productButtonQuantity}
+                  onClick={() => handleBuy(product)}
+                >
+                  <img src={addIcon} alt='Add Icon' />
+                </button>
+              </div>
+              <h4 className={styles.productText}>
+                ${product.precio * product.cantidad}
+              </h4>
               <button
-                className={styles.productButtonQuantity}
-                onClick={() => decreaseProduct(product)}
+                onClick={() => removeProduct(product)}
+                className={styles.productButtonEliminar}
               >
-                <img src={removeIcon} alt='Remove Icon' />
-              </button>
-              <h3 className={styles.productText}>{product.cantidad}</h3>
-              <button
-                className={styles.productButtonQuantity}
-                onClick={() => handleBuy(product)}
-              >
-                <img src={addIcon} alt='Add Icon' />
+                <img src={closeIcon} alt='close icon' />
               </button>
             </div>
-            <h4 className={styles.productText}>
-              ${product.precio * product.cantidad}
-            </h4>
-            <button
-              onClick={() => removeProduct(product)}
-              className={styles.productButtonEliminar}
-            >
-              <img src={closeIcon} alt='close icon' />
-            </button>
-          </div>
+          </>
         ))
       ) : (
         <p>No hay elementos en el carrito</p>
       )}
-      {cart.length !== 0 && (
-        <div className={styles.totalContainer}>
-          <p>TOTAL: ${total}</p>
-        </div>
+      {cart.items.length !== 0 && (
+        <>
+          <div>
+            <form
+              action='post'
+              id='form'
+              className={styles.formContainer}
+              onSubmit={e => handleFormChange(e)}
+            >
+              <div>
+                <label htmlFor='nombre'>NOMBRE</label>
+                <input
+                  className={styles.input}
+                  type='text'
+                  name='nombre'
+                  placeholder='nombre'
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='apellido'>APELLIDO</label>
+                <input
+                  className={styles.input}
+                  type='text'
+                  name='apellido'
+                  placeholder='apellido'
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='telefono'>TELEFONO</label>
+                <input
+                  className={styles.input}
+                  type='tel'
+                  name='telefono'
+                  id='telefono'
+                  placeholder='telefono'
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='email'>E-MAIL</label>
+                <input
+                  className={styles.input}
+                  type='email'
+                  name='email'
+                  id='email'
+                  placeholder='e-mail'
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='email_repeat'>E-MAIL</label>
+                <input
+                  className={styles.input}
+                  type='email'
+                  name='email_repeat'
+                  id='email_repeat'
+                  placeholder='repetir e-mail'
+                  required
+                />
+              </div>
+              <BtnSubmit btnTitle='COMPRAR' />
+            </form>
+          </div>
+
+          <div className={styles.totalContainer}>
+            <p>TOTAL: ${total()}</p>
+          </div>
+        </>
       )}
-      <div className={styles.buttonContainer}>
-        <BtnComprar btnTitle='COMPRAR' />
-      </div>
+      <ToastContainer />
     </div>
   )
 }

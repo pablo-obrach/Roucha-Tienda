@@ -20,7 +20,7 @@ const NavBar = () => {
       <NavBarMenu handleClicked={handleClicked} />
       <Links clicked={clicked} />
       <HeaderTitle />
-      <CartWidget items={cart.length} />
+      <CartWidget items={cart.items.length} />
     </nav>
   )
 }

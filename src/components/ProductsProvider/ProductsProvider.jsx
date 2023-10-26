@@ -1,51 +1,87 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, {useState, useContext, useEffect} from 'react'
+import {getFirestore, collection, addDoc} from 'firebase/firestore'
 
 const productsContext = React.createContext()
 
 export function ProductsProvider({children}) {
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem('cart')) || []
-  )
+  const [cart, setCart] = useState({
+    buyer: {
+      nombre: 'Jhon',
+      apellido: 'Doe',
+      email: 'jhon@doe.com',
+      telefono: '123534563'
+    },
+    items: [],
+    total: 0
+  })
 
   const handleBuy = product => {
-    const productRepeat = cart.find(prod => prod.id === product.id)
+    const {items} = cart
+    const index = items.findIndex(i => i.id === product.id)
 
-    if (productRepeat) {
-      setCart(
-        cart.map(prod =>
-          prod.id === product.id
-            ? {...product, cantidad: productRepeat.cantidad + 1}
-            : prod
-        )
-      )
+    if (index > -1) {
+      items[index].cantidad += 1
     } else {
-      setCart([...cart, product])
+      items.push({
+        ...product
+      })
     }
+
+    setCart({
+      ...cart,
+      items,
+      total: total()
+    })
   }
 
   const decreaseProduct = product => {
-    const productRepeat = cart.find(prod => prod.id === product.id)
+    const {items} = cart
+    const index = items.findIndex(i => i.id === product.id)
 
-    productRepeat.cantidad !== 1 &&
-      setCart(
-        cart.map(prod =>
-          prod.id === product.id
-            ? {...product, cantidad: productRepeat.cantidad - 1}
-            : prod
-        )
-      )
+    if (index > -1) {
+      items[index].cantidad -= 1
+    }
+
+    setCart({
+      ...cart,
+      items
+    })
   }
 
   const removeProduct = product => {
-    setCart(cart.filter(prod => prod.id !== product.id))
+    const {items} = cart
+    const index = items.findIndex(i => i.id === product.id)
+
+    if (index > -1) {
+      items.splice(index, 1)
+    }
+
+    setCart({
+      ...cart,
+      items
+    })
   }
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
+    localStorage.setItem('cart', JSON.stringify(cart.items))
   }, [cart])
 
-  const total = cart.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
+  const total = () => {
+    return cart.items.reduce(
+      (acc, item) => acc + item.precio * item.cantidad,
+      0
+    )
+  }
+
+  const sendOrder = () => {
+    const db = getFirestore()
+    const ordersCollection = collection(db, 'orders')
+
+    addDoc(ordersCollection, {...cart, date: new Date()}).then(({id}) => {
+      console.log(id)
+    })
+  }
 
   return (
     <productsContext.Provider
@@ -55,7 +91,8 @@ export function ProductsProvider({children}) {
         handleBuy,
         decreaseProduct,
         removeProduct,
-        total
+        total,
+        sendOrder
       }}
     >
       {children}
