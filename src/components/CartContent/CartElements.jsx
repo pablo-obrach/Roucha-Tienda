@@ -5,6 +5,7 @@ import addIcon from '../../assets/icons/MiAdd.svg'
 import removeIcon from '../../assets/icons/MiRemove.svg'
 import BtnSubmit from '../Buttons/BtnSubmit'
 import {ToastContainer, toast} from 'react-toastify'
+import {Link} from 'react-router-dom'
 const CartElements = () => {
   const {
     cart,
@@ -13,7 +14,8 @@ const CartElements = () => {
     removeProduct,
     total,
     sendOrder,
-    setCart
+    setCart,
+    orderId
   } = useProductsContext()
 
   const notify = () => {
@@ -44,8 +46,8 @@ const CartElements = () => {
     notify()
   }
   return (
-    <div key={cart.items.id} className={styles.mainContainerCart}>
-      <div className={styles.titleContainer}>
+    <div className={styles.mainContainerCart}>
+      <div key={cart} className={styles.titleContainer}>
         <h2>MI CARRITO</h2>
       </div>
 
@@ -60,7 +62,7 @@ const CartElements = () => {
               />
               <h3 className={styles.productText}>{product.nombre}</h3>
               <h3 className={styles.productText}>${product.precio}</h3>
-              <div className={styles.quantityContainer}>
+              <div className={styles.quantityContainer} key={product.id}>
                 <button
                   className={styles.productButtonQuantity}
                   onClick={() => decreaseProduct(product)}
@@ -154,6 +156,9 @@ const CartElements = () => {
               </div>
               <BtnSubmit btnTitle='COMPRAR' />
             </form>
+            {orderId !== '' && (
+              <Link to={'/checkOut'}>Detalle de la orden</Link>
+            )}
           </div>
 
           <div className={styles.totalContainer}>

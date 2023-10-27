@@ -8,6 +8,7 @@ import {ProductsProvider} from './components/ProductsProvider/ProductsProvider'
 import Lino from './components/Sections/Lino'
 import Algodon from './components/Sections/Algodon'
 import Accesorios from './components/Sections/Accesorios'
+import CheckOut from './components/CheckOut/CheckOut'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path='/lino' element={<Lino />} />
           <Route path='/algodon' element={<Algodon />} />
           <Route path='/accesorios' element={<Accesorios />} />
+          <Route path='/checkOut' element={<CheckOut />} />
         </Routes>
       </ProductsProvider>
     </BrowserRouter>

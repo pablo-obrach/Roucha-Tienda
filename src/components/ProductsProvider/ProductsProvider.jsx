@@ -16,6 +16,9 @@ export function ProductsProvider({children}) {
     total: 0
   })
 
+  const [orderId, setOrderId] = useState('')
+  console.log(orderId)
+
   const handleBuy = product => {
     const {items} = cart
     const index = items.findIndex(i => i.id === product.id)
@@ -79,7 +82,7 @@ export function ProductsProvider({children}) {
     const ordersCollection = collection(db, 'orders')
 
     addDoc(ordersCollection, {...cart, date: new Date()}).then(({id}) => {
-      console.log(id)
+      setOrderId(id)
     })
   }
 
@@ -92,7 +95,8 @@ export function ProductsProvider({children}) {
         decreaseProduct,
         removeProduct,
         total,
-        sendOrder
+        sendOrder,
+        orderId
       }}
     >
       {children}
