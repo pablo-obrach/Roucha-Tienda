@@ -39,3 +39,9 @@
 .navIcon5:hover > span:nth-child(3) {
   transform: rotate(-4deg) scaleY(1.1);
 }
+
+@media (max-width: 768px) {
+  .navIconContainer {
+    margin-left: 1rem;
+  }
+}

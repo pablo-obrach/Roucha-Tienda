@@ -57,3 +57,9 @@
 .cardLink {
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+  .textContainer {
+    text-align: center;
+  }
+}

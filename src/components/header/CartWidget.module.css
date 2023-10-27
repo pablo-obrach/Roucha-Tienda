@@ -21,3 +21,9 @@
   text-align: center;
   font-weight: 200;
 }
+
+@media (max-width: 768px) {
+  .cartWidgetContainer {
+    margin-right: 1rem;
+  }
+}
