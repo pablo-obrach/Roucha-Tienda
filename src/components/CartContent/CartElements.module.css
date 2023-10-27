@@ -120,3 +120,12 @@
   padding: 0.8em;
   font-size: 0.7rem;
 }
+
+.link {
+  text-decoration: none;
+  color: var(--black-titles);
+
+  &&:hover {
+    text-decoration: underline;
+  }
+}

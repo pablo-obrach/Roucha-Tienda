@@ -5,7 +5,7 @@ import {initializeApp} from 'firebase/app'
 import 'react-toastify/dist/ReactToastify.css'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBZ0ac96xAcLZ8Bfd_GaXOouzVONqnHPPo',
+  apiKey: import.meta.env.VITE_APP_API_KEY,
   authDomain: 'roucha-tienda.firebaseapp.com',
   projectId: 'roucha-tienda',
   storageBucket: 'roucha-tienda.appspot.com',

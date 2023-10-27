@@ -157,7 +157,9 @@ const CartElements = () => {
               <BtnSubmit btnTitle='COMPRAR' />
             </form>
             {orderId !== '' && (
-              <Link to={'/checkOut'}>Detalle de la orden</Link>
+              <Link className={styles.link} to={'/checkOut'}>
+                Detalle de la orden
+              </Link>
             )}
           </div>
 
