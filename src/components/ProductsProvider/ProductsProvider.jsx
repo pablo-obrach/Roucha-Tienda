@@ -43,7 +43,9 @@ export function ProductsProvider({children}) {
     const index = items.findIndex(i => i.id === product.id)
 
     if (index > -1) {
-      items[index].cantidad -= 1
+      if (items[index].cantidad > 1) {
+        items[index].cantidad -= 1
+      }
     }
 
     setCart({
