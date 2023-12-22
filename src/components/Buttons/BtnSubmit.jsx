@@ -1,8 +1,8 @@
 import styles from './BtnComprar.module.css'
 
-const BtnSubmit = ({btnTitle}) => {
+const BtnSubmit = ({btnTitle, onClick}) => {
   return (
-    <button type='submit' className={styles.BtnComprar}>
+    <button onClick={onClick} type='submit' className={styles.BtnComprar}>
       {btnTitle}
     </button>
   )

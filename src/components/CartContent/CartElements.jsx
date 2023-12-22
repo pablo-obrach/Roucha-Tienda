@@ -6,6 +6,7 @@ import removeIcon from '../../assets/icons/MiRemove.svg'
 import BtnSubmit from '../Buttons/BtnSubmit'
 import {ToastContainer, toast} from 'react-toastify'
 import {Link} from 'react-router-dom'
+
 const CartElements = () => {
   const {
     cart,
@@ -17,6 +18,9 @@ const CartElements = () => {
     setCart,
     orderId
   } = useProductsContext()
+
+  console.log(cart)
+  console.log(orderId)
 
   const notify = () => {
     toast.success('Su orden ya fue creada', {
@@ -47,13 +51,8 @@ const CartElements = () => {
       }
     }))
 
-    sendOrder()
     notify()
   }
-
-  // useEffect(() => {
-  //   sendOrder()
-  // }, [sendOrder])
 
   return (
     <div key={cart.id} className={styles.mainContainerCart}>
@@ -164,7 +163,7 @@ const CartElements = () => {
                   required
                 />
               </div>
-              <BtnSubmit btnTitle='COMPRAR' />
+              <BtnSubmit onClick={() => sendOrder()} btnTitle='COMPRAR' />
             </form>
             {orderId !== '' && (
               <Link className={styles.link} to={'/checkOut'}>

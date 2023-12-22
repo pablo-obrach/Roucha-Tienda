@@ -98,7 +98,8 @@ export function ProductsProvider({children}) {
         removeProduct,
         total,
         sendOrder,
-        orderId
+        orderId,
+        setOrderId
       }}
     >
       {children}
