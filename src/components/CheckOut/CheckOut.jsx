@@ -11,6 +11,7 @@ const CheckOut = () => {
   const {orderId} = useProductsContext()
   console.log(orderId)
   const [order, setOrder] = useState(null)
+  console.log(order)
 
   useEffect(() => {
     const db = getFirestore()

@@ -12,7 +12,9 @@ export function ProductsProvider({children}) {
       email: 'jhon@doe.com',
       telefono: '123534563'
     },
-    items: [],
+    items: localStorage.getItem('cart')
+      ? JSON.parse(localStorage.getItem('cart'))
+      : [],
     total: 0
   })
 

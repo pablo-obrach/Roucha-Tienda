@@ -36,21 +36,23 @@ const CartElements = () => {
   const handleFormChange = async e => {
     e.preventDefault()
 
-    const nombre = e.target.nombre.value
-    const apellido = e.target.apellido.value
-    const telefono = e.target.telefono.value
-    const email = e.target.email.value
+    const formData = new FormData(e.target)
+    const nombre = formData.get('nombre')
+    const apellido = formData.get('apellido')
+    const telefono = formData.get('telefono')
+    const email = formData.get('email')
 
     await setCart(prevCart => ({
       ...prevCart,
       buyer: {
         nombre,
         apellido,
-        telefono,
-        email
+        email,
+        telefono
       }
     }))
 
+    sendOrder()
     notify()
   }
 
@@ -163,10 +165,14 @@ const CartElements = () => {
                   required
                 />
               </div>
-              <BtnSubmit onClick={() => sendOrder()} btnTitle='COMPRAR' />
+              <BtnSubmit btnTitle='COMPRAR' />
             </form>
-            {orderId !== '' && (
-              <Link className={styles.link} to={'/checkOut'}>
+            {orderId && (
+              <Link
+                onClick={() => sendOrder()}
+                className={styles.link}
+                to={'/checkOut'}
+              >
                 Detalle de la orden
               </Link>
             )}
