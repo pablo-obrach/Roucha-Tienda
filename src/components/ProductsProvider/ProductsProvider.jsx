@@ -17,7 +17,6 @@ export function ProductsProvider({children}) {
   })
 
   const [orderId, setOrderId] = useState('')
-  console.log(cart)
 
   const handleBuy = product => {
     const {items} = cart
@@ -66,6 +65,7 @@ export function ProductsProvider({children}) {
       ...cart,
       items
     })
+    setOrderId('')
   }
 
   useEffect(() => {

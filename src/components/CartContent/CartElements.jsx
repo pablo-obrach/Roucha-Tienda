@@ -32,22 +32,32 @@ const CartElements = () => {
   const handleFormChange = async e => {
     e.preventDefault()
 
+    const nombre = e.target.nombre.value
+    const apellido = e.target.apellido.value
+    const telefono = e.target.telefono.value
+    const email = e.target.email.value
+
     await setCart(prevCart => ({
       ...prevCart,
       buyer: {
-        nombre: e.target.nombre.value,
-        apellido: e.target.apellido.value,
-        telefono: e.target.telefono.value,
-        email: e.target.email.value
+        nombre,
+        apellido,
+        telefono,
+        email
       }
     }))
 
     sendOrder()
     notify()
   }
+
+  // useEffect(() => {
+  //   sendOrder()
+  // }, [sendOrder])
+
   return (
     <div key={cart.id} className={styles.mainContainerCart}>
-      <div key={cart} className={styles.titleContainer}>
+      <div key={cart.id} className={styles.titleContainer}>
         <h2>MI CARRITO</h2>
       </div>
 
