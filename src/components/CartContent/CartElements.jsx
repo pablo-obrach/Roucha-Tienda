@@ -29,24 +29,24 @@ const CartElements = () => {
     })
   }
 
-  const handleFormChange = e => {
+  const handleFormChange = async e => {
     e.preventDefault()
 
-    setCart({
-      ...cart,
+    await setCart(prevCart => ({
+      ...prevCart,
       buyer: {
-        ...cart.buyer,
         nombre: e.target.nombre.value,
         apellido: e.target.apellido.value,
         telefono: e.target.telefono.value,
         email: e.target.email.value
       }
-    })
+    }))
+
     sendOrder()
     notify()
   }
   return (
-    <div className={styles.mainContainerCart}>
+    <div key={cart.id} className={styles.mainContainerCart}>
       <div key={cart} className={styles.titleContainer}>
         <h2>MI CARRITO</h2>
       </div>
