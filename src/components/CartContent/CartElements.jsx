@@ -6,6 +6,7 @@ import removeIcon from '../../assets/icons/MiRemove.svg'
 import BtnSubmit from '../Buttons/BtnSubmit'
 import {ToastContainer, toast} from 'react-toastify'
 import {Link} from 'react-router-dom'
+import {useEffect, useState} from 'react'
 
 const CartElements = () => {
   const {
@@ -15,12 +16,9 @@ const CartElements = () => {
     removeProduct,
     total,
     sendOrder,
-    setCart,
-    orderId
+    setCart
   } = useProductsContext()
-
-  console.log(cart)
-  console.log(orderId)
+  const [checkOutOk, setCheckOutOk] = useState(false)
 
   const notify = () => {
     toast.success('Su orden ya fue creada', {
@@ -52,13 +50,17 @@ const CartElements = () => {
       }
     }))
 
-    sendOrder()
+    setCheckOutOk(true)
     notify()
   }
 
+  useEffect(() => {
+    sendOrder()
+  }, [sendOrder])
+
   return (
-    <div key={cart.id} className={styles.mainContainerCart}>
-      <div key={cart.id} className={styles.titleContainer}>
+    <div className={styles.mainContainerCart}>
+      <div className={styles.titleContainer}>
         <h2>MI CARRITO</h2>
       </div>
 
@@ -165,14 +167,10 @@ const CartElements = () => {
                   required
                 />
               </div>
-              <BtnSubmit btnTitle='COMPRAR' />
+              <BtnSubmit onClick={() => sendOrder()} btnTitle='COMPRAR' />
             </form>
-            {orderId && (
-              <Link
-                onClick={() => sendOrder()}
-                className={styles.link}
-                to={'/checkOut'}
-              >
+            {checkOutOk && (
+              <Link className={styles.link} to={'/checkOut'}>
                 Detalle de la orden
               </Link>
             )}
